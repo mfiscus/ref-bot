@@ -13,15 +13,15 @@ networks:
           ip_range: 10.0.0.0/24
 
 services:
-  urf-bot:
-    image: mfiscus/urf-bot:latest
-    container_name: urf-bot
+  ref-bot:
+    image: mfiscus/ref-bot:latest
+    container_name: ref-bot
     domainname: kk7mnz.com
-    hostname: urf-bot_container
+    hostname: ref-bot_container
     networks:
       - proxy
     volumes:
-      - /opt/urf-bot:/config
+      - /opt/ref-bot:/config
     dns:
       - 10.0.0.2
     dns_search: kk7mnz.com
