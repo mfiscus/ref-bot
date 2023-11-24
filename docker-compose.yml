@@ -1,0 +1,28 @@
+version: '3.8'
+
+networks:
+  proxy:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-proxy
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/24
+          gateway: 10.0.0.1
+          ip_range: 10.0.0.0/24
+
+services:
+  urf-bot:
+    image: mfiscus/urf-bot:latest
+    container_name: urf-bot
+    domainname: kk7mnz.com
+    hostname: urf-bot_container
+    networks:
+      - proxy
+    volumes:
+      - /opt/urf-bot:/config
+    dns:
+      - 10.0.0.2
+    dns_search: kk7mnz.com
+    restart: no
