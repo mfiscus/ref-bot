@@ -1,7 +1,7 @@
 {
-  "name": "urf-bot",
+  "name": "ref-bot",
   "version": "1.0.0",
-  "description": "URFD Discord Bot",
+  "description": "Digital Voice Reflector Discord Bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
