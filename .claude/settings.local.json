@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx eslint:*)",
+      "Bash(node:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh pr:*)",
+      "Bash(npm show:*)",
+      "Bash(npm audit:*)",
+      "Bash(for f:*)",
+      "Bash(do node:*)",
+      "Bash(done)"
+    ]
+  }
+}
