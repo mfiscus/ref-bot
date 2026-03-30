@@ -22,12 +22,12 @@ const command = require('../../../commands/reflector/lastheard');
 
 const mockMetaResponse = () => ({
 	statusCode: 200,
-	body: { json: jest.fn().mockResolvedValue({ reflector_callsign: 'XRF001' }) },
+	body: { json: jest.fn().mockResolvedValue({ reflector_callsign: 'URF847' }) },
 });
 
 const makeStation = (callsign) => ({
 	callsign,
-	vianode: 'XRF001A',
+	vianode: 'URF847 A',
 	callsignsuffix: '',
 	onmodule: 'A',
 	lastheard: new Date(Date.now() - 60000).toISOString(),

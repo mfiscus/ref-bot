@@ -21,7 +21,7 @@ const command = require('../../../commands/reflector/peers');
 
 const mockMetaResponse = () => ({
 	statusCode: 200,
-	body: { json: jest.fn().mockResolvedValue({ reflector_callsign: 'XRF001' }) },
+	body: { json: jest.fn().mockResolvedValue({ reflector_callsign: 'URF847' }) },
 });
 
 const mockPeersResponse = (peers) => ({
