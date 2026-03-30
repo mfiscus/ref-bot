@@ -55,7 +55,7 @@ describe('peers command', () => {
 
 	it('replies with error when metadata API returns non-200', async () => {
 		request
-			.mockResolvedValueOnce(mockPeersResponse([{ callsign: 'W1AW', linkedmodule: 'A', connecttime: new Date().toISOString() }]))
+			.mockResolvedValueOnce(mockPeersResponse([{ callsign: 'KK7MNZ', linkedmodule: 'A', connecttime: new Date().toISOString() }]))
 			.mockResolvedValueOnce({ statusCode: 500, body: { json: jest.fn() } });
 		await command.execute(interaction);
 		expect(interaction.editReply).toHaveBeenCalledWith('metadata api returned error 500.');
@@ -63,7 +63,7 @@ describe('peers command', () => {
 
 	it('replies with embed on success', async () => {
 		const peers = [
-			{ callsign: 'W1AW', ip: '1.2.3.4', linkedmodule: 'A', connecttime: new Date(Date.now() - 7200000).toISOString(), lastheardtime: null },
+			{ callsign: 'KK7MNZ', ip: '1.2.3.4', linkedmodule: 'A', connecttime: new Date(Date.now() - 7200000).toISOString(), lastheardtime: null },
 			{ callsign: 'K6ABC', ip: '5.6.7.8', linkedmodule: 'B', connecttime: new Date(Date.now() - 3600000).toISOString(), lastheardtime: null },
 		];
 		request

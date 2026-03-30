@@ -54,7 +54,7 @@ describe('links command', () => {
 	});
 
 	it('replies with error when metadata API returns non-200', async () => {
-		const links = [{ callsign: 'W1AW', ip: '1.2.3.4', linkedmodule: 'A', protocol: 'XLX', connecttime: new Date().toISOString() }];
+		const links = [{ callsign: 'KK7MNZ', ip: '1.2.3.4', linkedmodule: 'A', protocol: 'XLX', connecttime: new Date().toISOString() }];
 		request
 			.mockResolvedValueOnce(mockLinksResponse(links))
 			.mockResolvedValueOnce({ statusCode: 503, body: { json: jest.fn() } });
@@ -64,7 +64,7 @@ describe('links command', () => {
 
 	it('replies with embed on success', async () => {
 		const links = [
-			{ callsign: 'W1AW', ip: '1.2.3.4', linkedmodule: 'A', protocol: 'XLX', connecttime: new Date(Date.now() - 3600000).toISOString(), lastheardtime: null },
+			{ callsign: 'KK7MNZ', ip: '1.2.3.4', linkedmodule: 'A', protocol: 'XLX', connecttime: new Date(Date.now() - 3600000).toISOString(), lastheardtime: null },
 		];
 		request
 			.mockResolvedValueOnce(mockLinksResponse(links))
@@ -75,7 +75,7 @@ describe('links command', () => {
 
 	it('normalizes DMRMmdvm protocol label to DMR', async () => {
 		const links = [
-			{ callsign: 'W1AW', ip: '1.2.3.4', linkedmodule: 'A', protocol: 'DMRMmdvm', connecttime: new Date(Date.now() - 3600000).toISOString(), lastheardtime: null },
+			{ callsign: 'KK7MNZ', ip: '1.2.3.4', linkedmodule: 'A', protocol: 'DMRMmdvm', connecttime: new Date(Date.now() - 3600000).toISOString(), lastheardtime: null },
 		];
 		request
 			.mockResolvedValueOnce(mockLinksResponse(links))
