@@ -76,7 +76,26 @@ node index.js
 ```bash
 npm install
 npx eslint .        # lint
+npm test            # run tests
 node index.js       # run
+```
+
+## Testing
+
+Tests are written with [Jest](https://jestjs.io/) and live in the `tests/` directory:
+
+| Path | Type | What it covers |
+|------|------|----------------|
+| `tests/unit/utils.test.js` | Unit | Utility functions (`pluralize`, `timeSinceDate`, `timeSinceSeconds`) |
+| `tests/integration/commands/*.test.js` | Integration | Each slash command (`status`, `lastheard`, `peers`, `links`) |
+
+The integration tests mock `undici` (HTTP requests) and `discord.js` so no live reflector or Discord connection is needed.
+
+```bash
+npm test                        # run all tests
+npx jest tests/unit             # unit tests only
+npx jest tests/integration      # integration tests only
+npx jest --coverage             # with coverage report
 ```
 
 ## Docker Hub
