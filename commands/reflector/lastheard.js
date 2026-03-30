@@ -1,24 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { request } = require('undici');
 const { url, icon } = require('../../config.json');
+const { timeSinceDate } = require('../../utils');
 const limit = 5;
-
-const pluralize = (count, noun, suffix = 's') => `${count} ${noun}${count !== 1 ? suffix : ''}`;
-
-function TimeSince(date) {
-	const seconds = Math.floor((new Date() - date) / 1000);
-	let interval = seconds / 31536000;
-	if (interval > 1) return pluralize(Math.floor(interval), 'year') + ' ago';
-	interval = seconds / 2592000;
-	if (interval > 1) return pluralize(Math.floor(interval), 'month') + ' ago';
-	interval = seconds / 86400;
-	if (interval > 1) return pluralize(Math.floor(interval), 'day') + ' ago';
-	interval = seconds / 3600;
-	if (interval > 1) return pluralize(Math.floor(interval), 'hour') + ' ago';
-	interval = seconds / 60;
-	if (interval > 1) return pluralize(Math.floor(interval), 'minute') + ' ago';
-	return pluralize(Math.floor(interval), 'second') + ' ago';
-}
 
 module.exports = {
 	cooldown: 10,
@@ -56,7 +40,7 @@ module.exports = {
 			embed.addFields(
 				{ name: ' ', value: `${stations.stations[i].callsign} `, inline: true },
 				{ name: ' ', value: `${stations.stations[i].onmodule} `, inline: true },
-				{ name: ' ', value: TimeSince(new Date(stations.stations[i].lastheard)), inline: true },
+				{ name: ' ', value: timeSinceDate(new Date(stations.stations[i].lastheard)), inline: true },
 			);
 		}
 		interaction.editReply({ embeds: [embed] });

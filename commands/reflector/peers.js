@@ -1,23 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { request } = require('undici');
 const { url, icon } = require('../../config.json');
-
-const pluralize = (count, noun, suffix = 's') => `${count} ${noun}${count !== 1 ? suffix : ''}`;
-
-function TimeSince(date) {
-	const seconds = Math.floor((new Date() - date) / 1000);
-	let interval = seconds / 31536000;
-	if (interval > 1) return pluralize(Math.floor(interval), 'year') + ' ago';
-	interval = seconds / 2592000;
-	if (interval > 1) return pluralize(Math.floor(interval), 'month') + ' ago';
-	interval = seconds / 86400;
-	if (interval > 1) return pluralize(Math.floor(interval), 'day') + ' ago';
-	interval = seconds / 3600;
-	if (interval > 1) return pluralize(Math.floor(interval), 'hour') + ' ago';
-	interval = seconds / 60;
-	if (interval > 1) return pluralize(Math.floor(interval), 'minute') + ' ago';
-	return pluralize(Math.floor(interval), 'second') + ' ago';
-}
+const { timeSinceDate } = require('../../utils');
 
 module.exports = {
 	cooldown: 10,
@@ -54,7 +38,7 @@ module.exports = {
 			console.log(peers[i].callsign, peers[i].ip, peers[i].linkedmodule, peers[i].connecttime, peers[i].lastheardtime);
 			callsign += peers[i].callsign + '\n';
 			module += peers[i].linkedmodule + '\n';
-			connected += TimeSince(new Date(peers[i].connecttime)) + '\n';
+			connected += timeSinceDate(new Date(peers[i].connecttime)) + '\n';
 
 		}
 

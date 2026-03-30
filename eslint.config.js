@@ -4,6 +4,14 @@ const globals = require('globals');
 module.exports = [
 	js.configs.recommended,
 	{
+		files: ['tests/**/*.js'],
+		languageOptions: {
+			globals: {
+				...globals.jest,
+			},
+		},
+	},
+	{
 		languageOptions: {
 			ecmaVersion: 2021,
 			globals: {

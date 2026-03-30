@@ -1,22 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { request } = require('undici');
 const { url, icon } = require('../../config.json');
-
-const pluralize = (count, noun, suffix = 's') => `${count} ${noun}${count !== 1 ? suffix : ''}`;
-
-function TimeSince(seconds) {
-	let interval = seconds / 31536000;
-	if (interval > 1) return pluralize(Math.floor(interval), 'year');
-	interval = seconds / 2592000;
-	if (interval > 1) return pluralize(Math.floor(interval), 'month');
-	interval = seconds / 86400;
-	if (interval > 1) return pluralize(Math.floor(interval), 'day');
-	interval = seconds / 3600;
-	if (interval > 1) return pluralize(Math.floor(interval), 'hour');
-	interval = seconds / 60;
-	if (interval > 1) return pluralize(Math.floor(interval), 'minute');
-	return pluralize(Math.floor(interval), 'second') + ' ago';
-}
+const { timeSinceSeconds } = require('../../utils');
 
 module.exports = {
 	cooldown: 10,
@@ -42,7 +27,7 @@ module.exports = {
 			.setAuthor({ name: `${metadata.reflector_callsign}`, iconURL: `${icon}`, url: `${url}` })
 			.addFields(
 				{ name: 'Status', value: `${status.reflectorstatus.charAt(0).toUpperCase() + status.reflectorstatus.slice(1)} `, inline: true },
-				{ name: 'Uptime', value: TimeSince(status.reflectoruptimeseconds), inline: true },
+				{ name: 'Uptime', value: timeSinceSeconds(status.reflectoruptimeseconds), inline: true },
 			);
 
 		interaction.editReply({ embeds: [embed] });
