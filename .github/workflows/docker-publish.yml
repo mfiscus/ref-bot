@@ -21,7 +21,6 @@ jobs:
         id: pkg
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "major_minor=$(echo $VERSION | cut -d. -f1,2)" >> $GITHUB_OUTPUT
 
       - name: Set up QEMU
@@ -43,7 +42,6 @@ jobs:
           images: mfiscus/ref-bot
           tags: |
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-            type=raw,value=${{ steps.pkg.outputs.version }}
             type=raw,value=${{ steps.pkg.outputs.major_minor }}
 
       - name: Build and push
