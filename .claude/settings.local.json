@@ -9,7 +9,9 @@
       "Bash(npm audit:*)",
       "Bash(for f:*)",
       "Bash(do node:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Read(//var/home/linuxbrew/.linuxbrew/lib/node_modules/npm/bin/**)",
+      "Read(//var/home/linuxbrew/**)"
     ]
   }
 }

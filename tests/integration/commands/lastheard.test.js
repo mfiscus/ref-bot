@@ -70,7 +70,7 @@ describe('lastheard command', () => {
 
 	it('replies with error when metadata API returns non-200', async () => {
 		request
-			.mockResolvedValueOnce(mockStationsResponse([makeStation('W1AW')]))
+			.mockResolvedValueOnce(mockStationsResponse([makeStation('KK7MNZ')]))
 			.mockResolvedValueOnce({ statusCode: 503, body: { json: jest.fn() } });
 		await command.execute(interaction);
 		expect(interaction.editReply).toHaveBeenCalledWith('metadata api returned error 503.');
@@ -78,14 +78,14 @@ describe('lastheard command', () => {
 
 	it('replies with embed on success', async () => {
 		request
-			.mockResolvedValueOnce(mockStationsResponse([makeStation('W1AW'), makeStation('K6ABC')]))
+			.mockResolvedValueOnce(mockStationsResponse([makeStation('KK7MNZ'), makeStation('K6ABC')]))
 			.mockResolvedValueOnce(mockMetaResponse());
 		await command.execute(interaction);
 		expect(interaction.editReply).toHaveBeenCalledWith({ embeds: [expect.any(Object)] });
 	});
 
 	it('limits output to 5 stations', async () => {
-		const stations = ['W1AW', 'K6ABC', 'N7XYZ', 'KD9FOO', 'WB4BAR', 'AA1ZZ', 'KK7MNZ'].map(makeStation);
+		const stations = ['KK7MNZ', 'K6ABC', 'N7XYZ', 'KD9FOO', 'WB4BAR', 'AA1ZZ', 'KK7MNZ'].map(makeStation);
 		request
 			.mockResolvedValueOnce(mockStationsResponse(stations))
 			.mockResolvedValueOnce(mockMetaResponse());
